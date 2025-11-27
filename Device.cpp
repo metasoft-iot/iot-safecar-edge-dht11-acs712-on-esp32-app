@@ -22,7 +22,7 @@
  * Full license text: https://creativecommons.org/licenses/by-nd/4.0/legalcode
  */
 
-#include "../include/Device.h"
+#include "Device.h"
 
 // No implementation needed for abstract class
 

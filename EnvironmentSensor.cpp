@@ -1,4 +1,4 @@
-#include "../include/EnvironmentSensor.h"
+#include "EnvironmentSensor.h"
 
 EnvironmentSensor::EnvironmentSensor(int pin, uint8_t type, EventHandler* eventHandler)
     : Sensor(pin, eventHandler), dht(pin, type), temperature(0.0) {

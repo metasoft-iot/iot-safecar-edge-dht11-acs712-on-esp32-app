@@ -1,10 +1,10 @@
 /**
-* @file Actuator.cpp
- * @brief Implements the Actuator base class.
+* @file Sensor.cpp
+ * @brief Implements the Sensor base class.
  *
- * Provides core functionality for actuators in the Modest IoT Nano-framework, including command
+ * Provides core functionality for sensors in the Modest IoT Nano-framework, including event
  * propagation to an assigned handler. Subclasses should configure hardware and define specific
- * command execution logic.
+ * event generation logic.
  *
  * @author Angel Velasquez
  * @date March 22, 2025
@@ -23,18 +23,18 @@
  * Full license text: https://creativecommons.org/licenses/by-nd/4.0/legalcode
  */
 
-#include "../include/Actuator.h"
+#include "Sensor.h"
 
-Actuator::Actuator(int pin, CommandHandler* commandHandler)
-    : pin(pin), handler(commandHandler) {}
+Sensor::Sensor(int pin, EventHandler* eventHandler)
+    : pin(pin), handler(eventHandler) {}
 
-void Actuator::handle(Command command) {
+void Sensor::on(Event event) {
     if (handler != nullptr) {
-        handler->handle(command);
+        handler->on(event);
     }
 }
 
-void Actuator::setHandler(CommandHandler* commandHandler) {
-    handler = commandHandler;
+void Sensor::setHandler(EventHandler* eventHandler) {
+    handler = eventHandler;
 }
 

@@ -1,4 +1,4 @@
-#include "../include/CurrentSensor.h"
+#include "CurrentSensor.h"
 #include <Arduino.h>
 
 CurrentSensor::CurrentSensor(int pin, EventHandler* eventHandler)

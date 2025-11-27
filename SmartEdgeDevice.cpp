@@ -1,4 +1,4 @@
-#include "../include/SmartEdgeDevice.h"
+#include "SmartEdgeDevice.h"
 #include <Arduino.h>
 
 SmartEdgeDevice::SmartEdgeDevice()

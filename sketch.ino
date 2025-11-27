@@ -6,8 +6,8 @@
  * Logic is delegated to the SmartEdgeDevice class.
  */
 
-#include "include/ModestIoT.h"
-#include "include/SmartEdgeDevice.h"
+#include "ModestIoT.h"
+#include "SmartEdgeDevice.h"
 
 SmartEdgeDevice device; ///< Instance of the SmartEdgeDevice.
 

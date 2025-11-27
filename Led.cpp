@@ -23,7 +23,7 @@
  * Full license text: https://creativecommons.org/licenses/by-nd/4.0/legalcode
  */
 
-#include "../include/Led.h"
+#include "Led.h"
 #include <Arduino.h>
 
 const Command Led::TOGGLE_LED_COMMAND = Command(TOGGLE_LED_COMMAND_ID);
