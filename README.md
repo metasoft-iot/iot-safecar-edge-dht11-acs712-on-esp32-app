@@ -1,4 +1,4 @@
-# Smart Edge Embedded App Example (C++ Edition)
+# IoT Safecar Edge DHT11 ACS712 ON ESP32 DEVKIT V1 APP
 
 **Version**: 0.1
 **Author**: Metasoft Development Team
