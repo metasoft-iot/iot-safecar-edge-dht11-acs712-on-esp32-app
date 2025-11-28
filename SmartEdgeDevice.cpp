@@ -5,7 +5,8 @@ SmartEdgeDevice::SmartEdgeDevice()
     : dhtSensor(DHT_PIN, DHT_TYPE),
       acsSensor(ACS_PIN),
       led(LED_PIN),
-      lastLogTime(0) {
+      lastLogTime(0),
+      lastSend(0) {
 }
 
 void SmartEdgeDevice::setup() {
@@ -20,6 +21,16 @@ void SmartEdgeDevice::setup() {
 
     Serial.println("Calibration Info:");
     acsSensor.printCalibration();
+
+    // Connect to WiFi and Edge Service
+    Serial.println("\n=== Connecting to Edge Service ===");
+    if (edgeClient.connectWiFi()) {
+        Serial.println("Ready to send telemetry data!");
+    } else {
+        Serial.println("WARNING: WiFi connection failed. Telemetry will not be sent.");
+        Serial.println("Device will continue operating in offline mode.");
+    }
+
     Serial.println("System Ready.");
 }
 
@@ -38,6 +49,24 @@ void SmartEdgeDevice::update() {
         on(Event(EVENT_HIGH_CURRENT));
     } else {
         on(Event(EVENT_NORMAL_CURRENT));
+    }
+
+    // Send Telemetry to Edge Service (Every 10 seconds)
+    if (currentMillis - lastSend > SEND_INTERVAL) {
+        lastSend = currentMillis;
+        
+        Serial.println("\n========================================");
+        Serial.println("Sending telemetry data...");
+        
+        // Convert mA to Amperes
+        float currentAmperes = mA / 1000.0;
+        
+        edgeClient.sendTelemetry(
+            dhtSensor.getTemperature(),
+            currentAmperes
+        );
+        
+        Serial.println("========================================\n");
     }
 
     // Log every 5 seconds

@@ -5,13 +5,16 @@
 #include "EnvironmentSensor.h"
 #include "CurrentSensor.h"
 #include "Led.h"
+#include "EdgeServiceClient.h"  // HTTP client for Edge Service
 
 class SmartEdgeDevice : public Device {
 private:
     EnvironmentSensor dhtSensor;
     CurrentSensor acsSensor;
     Led led;
+    EdgeServiceClient edgeClient;  // Edge service client
     unsigned long lastLogTime;
+    unsigned long lastSend;        // Timestamp for telemetry sending
 
 public:
     // Constants for pins
@@ -23,6 +26,9 @@ public:
     // Event IDs
     static const int EVENT_HIGH_CURRENT = 10;
     static const int EVENT_NORMAL_CURRENT = 11;
+
+    // Telemetry Sending Interval
+    static const unsigned long SEND_INTERVAL = 10000;  // Send every 10 seconds
 
     SmartEdgeDevice();
 
